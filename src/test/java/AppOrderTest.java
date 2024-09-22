@@ -58,4 +58,28 @@ public class AppOrderTest {
         $("[data-test-id=agreement].input_invalid .checkbox__text").shouldHave(exactText("Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй"));
 
     }
+    @Test
+    public void appOrderInValidEmptyNameTest() {
+
+        open("http://localhost:9999/");
+
+
+        $("[data-test-id=phone] input").setValue("+71234567890");
+        $("[data-test-id=agreement]").click();
+        $("[class=button__text]").click();
+        $("[data-test-id=name].input_invalid .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
+
+    }
+
+@Test
+public void appOrderInValidEmptyPhoneTest() {
+
+    open("http://localhost:9999/");
+
+    $("[data-test-id=name] input").setValue("Александр");
+    $("[data-test-id=agreement]").click();
+    $("[class=button__text]").click();
+    $("[data-test-id=phone].input_invalid .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
+
+}
 }
